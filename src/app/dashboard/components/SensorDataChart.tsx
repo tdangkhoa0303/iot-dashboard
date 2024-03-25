@@ -59,8 +59,10 @@ const SensorDataChart = ({
     TIMESCALE_OPTIONS[0]
   );
 
-  const { data, isFetching } = useQuery({
+  const { data } = useQuery({
     queryKey: ['temperature', feedKey, timescale.value],
+    refetchInterval: 5000,
+    placeholderData: (previousData) => previousData,
     queryFn: () => {
       setLastUpdated(new Date());
       return fetch(
@@ -172,7 +174,7 @@ const SensorDataChart = ({
         show: true,
         min: Math.floor(Math.min(...yValues) - 1),
         max: Math.ceil(Math.max(...yValues) + 1),
-        stepSize: 2,
+        stepSize: 4,
       },
     }),
     [data, isDarkMode, yValues]
@@ -180,7 +182,7 @@ const SensorDataChart = ({
 
   return (
     <Card extra="!p-[20px] text-center relative">
-      {isFetching && <Loader transparent className="absolute top-0 left-0" />}
+      {/* {isFetching && <Loader transparent className="absolute top-0 left-0" />} */}
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
           <button className="!linear z-[1] flex items-center justify-center rounded-lg bg-lightPrimary p-2 text-brand-500 !transition !duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10">
@@ -226,22 +228,11 @@ const SensorDataChart = ({
         </Dropdown>
       </div>
 
-      {!isFetching && data?.data?.length ? (
-        <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden min-h-[400px]">
-          <div className="h-full w-full ">
-            <LineChart chartOptions={chartOptions} chartData={chartData} />
-          </div>
+      <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden min-h-[400px]">
+        <div className="h-full w-full ">
+          <LineChart chartOptions={chartOptions} chartData={chartData} />
         </div>
-      ) : (
-        <>
-          <img
-            src={EmptyState}
-            className="max-w-xs self-center mt-20"
-            alt="empty state"
-          />
-          <p className="my-2 mt-4 font-medium">No Data</p>
-        </>
-      )}
+      </div>
     </Card>
   );
 };
