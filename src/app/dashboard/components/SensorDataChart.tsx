@@ -5,15 +5,14 @@ import Dropdown from 'components/dropdown';
 import Loader from 'components/loader';
 import { AIO_KEY } from 'constants/aio';
 import { format } from 'date-fns';
-import { sum } from 'lodash-es';
 import qs from 'query-string';
-import { ComponentType, ReactElement, useMemo, useState } from 'react';
-import { MdBarChart, MdOutlineCalendarToday } from 'react-icons/md';
+import { ComponentType, useMemo, useState } from 'react';
+import { MdOutlineCalendarToday } from 'react-icons/md';
 
-import EmptyState from 'assets/img/empty_state.png';
-import { IconBaseProps } from 'react-icons';
 import { ApexOptions } from 'apexcharts';
+import EmptyState from 'assets/img/empty_state.png';
 import { useDarkMode } from 'providers/dark-mode-provider';
+import { IconBaseProps } from 'react-icons';
 
 type TimescaleOption = {
   text: string;
@@ -21,7 +20,7 @@ type TimescaleOption = {
 };
 
 const TIMESCALE_OPTIONS: TimescaleOption[] = [
-  { text: 'Last 24 hours', value: 'hour' },
+  { text: 'Last day', value: 'hour' },
   {
     text: 'Last hour',
     value: 'minute',
@@ -101,8 +100,8 @@ const SensorDataChart = ({
   const chartOptions = useMemo(
     (): ApexOptions => ({
       legend: {
-        show: true,
-        position: 'left',
+        position: 'top',
+        horizontalAlign: 'left',
       },
 
       theme: {
@@ -110,9 +109,18 @@ const SensorDataChart = ({
       },
       chart: {
         type: 'line',
+        background: 'transparent',
 
         toolbar: {
           show: false,
+        },
+        dropShadow: {
+          enabled: true,
+          enabledOnSeries: [0],
+          top: -2,
+          left: 2,
+          blur: 5,
+          opacity: 0.06,
         },
       },
 
@@ -134,9 +142,14 @@ const SensorDataChart = ({
         },
       },
       grid: {
-        show: false,
+        borderColor: isDarkMode ? '#d2d2d210' : '#d2d2d240',
+        show: true,
+        yaxis: {
+          lines: {},
+        },
       },
       xaxis: {
+        type: 'datetime',
         axisBorder: {
           show: false,
         },
@@ -152,9 +165,7 @@ const SensorDataChart = ({
         },
         range: undefined,
         categories:
-          data?.data?.map?.((record): string =>
-            format(record[0], 'dd MMMM HH:mm')
-          ) ?? [],
+          data?.data?.map?.((record) => new Date(record[0]).getTime()) ?? [],
       },
 
       yaxis: {
@@ -180,7 +191,7 @@ const SensorDataChart = ({
               {title}
             </h2>
             <div className="text-xs text-gray-700 dark:text-white text-left">
-              Last updated at {format(lastUpdated, 'dd/mm/yyyy HH:mm:ss')}
+              Last updated at {format(lastUpdated, 'dd MMMM HH:mm:ss')}
             </div>
           </div>
         </div>
@@ -216,7 +227,7 @@ const SensorDataChart = ({
       </div>
 
       {!isFetching && data?.data?.length ? (
-        <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden min-h-[360px]">
+        <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden min-h-[400px]">
           <div className="h-full w-full ">
             <LineChart chartOptions={chartOptions} chartData={chartData} />
           </div>

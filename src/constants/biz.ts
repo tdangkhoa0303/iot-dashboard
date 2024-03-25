@@ -1,6 +1,6 @@
 export const TEMPERATURE_THRESHOLD = {
-  MIN: 15,
-  MAX: 40,
+  MIN: 20,
+  MAX: 60,
 } as const;
 
 export const MOISTURE_THRESHOLD = {

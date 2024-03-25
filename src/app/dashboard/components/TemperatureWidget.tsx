@@ -69,7 +69,6 @@ const TemperatureWidget = () => {
               },
             },
             {
-              limit: TEMPERATURE_THRESHOLD.MAX,
               showTick: true,
               tooltip: {
                 text: 'Looks good!',
@@ -82,7 +81,7 @@ const TemperatureWidget = () => {
               },
             },
             {
-              limit: 60,
+              limit: TEMPERATURE_THRESHOLD.MAX,
               showTick: true,
               tooltip: {
                 text: 'High temperature',
@@ -126,8 +125,8 @@ const TemperatureWidget = () => {
           },
         }}
         value={value}
-        minValue={-10}
-        maxValue={60}
+        minValue={0}
+        maxValue={100}
       />
     </Card>
   );

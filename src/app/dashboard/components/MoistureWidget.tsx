@@ -12,11 +12,6 @@ import GaugeComponent from 'react-gauge-component';
 const MoistureWidget = () => {
   const { isDarkMode } = useDarkMode();
 
-  useSubcribeMqttTopic({
-    topic: AIO_FEED_IDS.MOISTURE_SENSOR,
-    handler: ({ data }) => setValue(Number(data)),
-  });
-
   const { data, isFetching } = useQuery({
     queryKey: ['lastHumidity'],
     queryFn: () =>
@@ -39,6 +34,11 @@ const MoistureWidget = () => {
   });
 
   const [value, setValue] = useState(data);
+
+  useSubcribeMqttTopic({
+    topic: AIO_FEED_IDS.MOISTURE_SENSOR,
+    handler: ({ data }) => setValue(Number(data)),
+  });
 
   return (
     <Card extra="p-4">

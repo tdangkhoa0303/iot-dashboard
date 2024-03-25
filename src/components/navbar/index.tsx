@@ -1,6 +1,7 @@
 import { useDarkMode } from 'providers/dark-mode-provider';
 import React from 'react';
 import { RiMoonFill, RiSunFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -11,15 +12,15 @@ const Navbar = (props: {
   const { toggleDarkMode, isDarkMode } = useDarkMode();
 
   return (
-    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+    <nav className="z-40 flex flex-row flex-wrap items-center justify-between bg-white/10 p-2 dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
           >
             {brandText}
-          </a>
+          </Link>
         </p>
       </div>
 
