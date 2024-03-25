@@ -61,7 +61,7 @@ const SensorDataChart = ({
 
   const { data } = useQuery({
     queryKey: ['temperature', feedKey, timescale.value],
-    refetchInterval: 5000,
+    refetchInterval: 10000,
     placeholderData: (previousData) => previousData,
     queryFn: () => {
       setLastUpdated(new Date());
@@ -175,6 +175,9 @@ const SensorDataChart = ({
         min: Math.floor(Math.min(...yValues) - 1),
         max: Math.ceil(Math.max(...yValues) + 1),
         stepSize: 4,
+        labels: {
+          formatter: (value) => value.toFixed(2),
+        },
       },
     }),
     [data, isDarkMode, yValues]
