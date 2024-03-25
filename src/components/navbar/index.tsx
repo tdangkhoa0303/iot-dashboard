@@ -1,5 +1,5 @@
 import { useDarkMode } from 'providers/dark-mode-provider';
-import React from 'react';
+import { IoReloadSharp } from 'react-icons/io5';
 import { RiMoonFill, RiSunFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
@@ -24,23 +24,31 @@ const Navbar = (props: {
         </p>
       </div>
 
-      <div
-        className="rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer text-gray-600 bg-white p-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none w-11 h-11"
-        onClick={() => {
-          if (isDarkMode) {
-            document.body.classList.remove('dark');
-            toggleDarkMode(false);
-          } else {
-            document.body.classList.add('dark');
-            toggleDarkMode(true);
-          }
-        }}
-      >
-        {isDarkMode ? (
-          <RiSunFill className="h-5 w-5 text-gray-600 dark:text-white" />
-        ) : (
-          <RiMoonFill className="h-5 w-5 text-gray-600 dark:text-white" />
-        )}
+      <div className="flex gap-2">
+        <div
+          className="rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer text-gray-600 bg-white p-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none w-11 h-11"
+          onClick={() => window.location.reload()}
+        >
+          <IoReloadSharp />
+        </div>
+        <div
+          className="rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer text-gray-600 bg-white p-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none w-11 h-11"
+          onClick={() => {
+            if (isDarkMode) {
+              document.body.classList.remove('dark');
+              toggleDarkMode(false);
+            } else {
+              document.body.classList.add('dark');
+              toggleDarkMode(true);
+            }
+          }}
+        >
+          {isDarkMode ? (
+            <RiSunFill className="h-5 w-5 text-gray-600 dark:text-white" />
+          ) : (
+            <RiMoonFill className="h-5 w-5 text-gray-600 dark:text-white" />
+          )}
+        </div>
       </div>
       {/* <div className="relative mt-[3px] flex w-10 h-10 min-w-0 flex-grow items-center justify-around gap-2 md:gap-8 rounded-full bg-white px-4 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none md:flex-grow-0 xl:gap-2"> */}
       {/* <div className="flex h-full items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
