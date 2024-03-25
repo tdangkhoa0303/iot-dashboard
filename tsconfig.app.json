@@ -6,7 +6,9 @@
       "node",
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
-      "vite/client"
+      "vite/client",
+      "vite-plugin-pwa/react",
+      "vite-plugin-pwa/info"
     ]
   },
   "exclude": [
@@ -19,5 +21,12 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/variables/charts.ts",
+    "./vite.config.ts"
+  ]
 }
