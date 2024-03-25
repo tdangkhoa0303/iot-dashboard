@@ -5,9 +5,12 @@ import withReactContent from 'sweetalert2-react-content';
 const CustomSwal = withReactContent(Swal);
 
 const requestPermission = async () => {
-  if (Notification.permission === 'granted') {
+  if (!('Notification' in window)) {
+    // Check if the browser supports notifications
+    console.info('This browser does not support desktop notification');
+  } else if (Notification.permission === 'granted') {
     return;
-  } else {
+  } else if (Notification.permission !== 'denied') {
     await CustomSwal.fire({
       title: 'Notifcation',
       text: 'Enable notifcation to recieve alert from your devices!',
@@ -18,11 +21,15 @@ const requestPermission = async () => {
       reverseButtons: true,
       allowOutsideClick: false,
     }).then((result) => {
-      console.log(result);
-      localStorage.setItem(
-        NOTIFICATION_PERMISSION_LOCAL_STORAGE_KEY,
-        `${result.isConfirmed}`
-      );
+      if (result.isConfirmed) {
+        Notification.requestPermission().then((permission) => {
+          // If the user accepts, let's create a notification
+          localStorage.setItem(
+            NOTIFICATION_PERMISSION_LOCAL_STORAGE_KEY,
+            `${permission === 'granted'}`
+          );
+        });
+      }
     });
   }
 };

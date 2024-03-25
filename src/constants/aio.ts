@@ -1,7 +1,7 @@
 export const AIO_FEED_IDS = {
-  FAN: 'duc23mse23106/feeds/relay1',
-  LIGHT: 'duc23mse23106/feeds/relay2',
-  PUMP: 'duc23mse23106/feeds/relay3',
+  FAN: 'duc23mse23106/feeds/button1',
+  LIGHT: 'duc23mse23106/feeds/button2',
+  PUMP: 'duc23mse23106/feeds/button3',
   TEMPERATURE_SENSOR: 'duc23mse23106/feeds/temperature',
   MOISTURE_SENSOR: 'duc23mse23106/feeds/moisture',
 } as const;

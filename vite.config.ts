@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => ({
         theme_color: '#7551ff',
         background_color: '#7551ff',
         display: 'standalone',
-        start_url: './index.html',
+        start_url: '/',
       },
       workbox: {
         runtimeCaching: [
