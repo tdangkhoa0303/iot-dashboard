@@ -103,9 +103,10 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
-
   build: {
-    outDir: './dist/iot-dashboard',
+    minify: mode === 'production',
+    cssMinify: mode === 'production',
+    sourcemap: true, // Source map generation must be turned on
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
