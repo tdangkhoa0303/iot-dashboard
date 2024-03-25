@@ -11,7 +11,6 @@ import MoistureWidget from './components/MoistureWidget';
 const Dashboard = () => {
   return (
     <div>
-      {/* <AIButton /> */}
       <div className="mt-3 grid gap-5 grid-cols-1 md:grid-cols-3">
         <TemperatureWidget />
         <MoistureWidget />

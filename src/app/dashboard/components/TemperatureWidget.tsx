@@ -8,6 +8,7 @@ import { useDarkMode } from 'providers/dark-mode-provider';
 import queryString from 'query-string';
 import { useState } from 'react';
 import GaugeComponent from 'react-gauge-component';
+import AIButton from './AIButton';
 
 const TemperatureWidget = () => {
   const { isDarkMode } = useDarkMode();
@@ -42,8 +43,11 @@ const TemperatureWidget = () => {
 
   return (
     <Card extra="p-4">
-      <div className="text-xl font-bold text-navy-700 dark:text-white">
-        Temperature
+      <div className="flex justify-between items-center">
+        <p className="text-xl font-bold text-navy-700 dark:text-white">
+          Temperature
+        </p>
+        <AIButton />
       </div>
       {isFetching && <Loader transparent className="absolute top-0 left-0" />}
       <GaugeComponent

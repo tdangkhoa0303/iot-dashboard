@@ -42,16 +42,16 @@ const handleMqttTopic = (topic: string, payload: number) => {
   switch (topic) {
     case AIO_FEED_IDS.MOISTURE_SENSOR:
       if (payload < MOISTURE_THRESHOLD.MIN) {
-        pushNotification('IoT', 'Humidity is lower than threshold');
+        pushNotification('IOT', 'Humidity is lower than threshold');
       } else if (payload > MOISTURE_THRESHOLD.MAX) {
-        pushNotification('IoT', 'Humidity is higher than threshold');
+        pushNotification('IOT', 'Humidity is higher than threshold');
       }
       break;
     case AIO_FEED_IDS.TEMPERATURE_SENSOR:
       if (payload < TEMPERATURE_THRESHOLD.MIN) {
-        pushNotification('IoT', 'Temperature is lower than threshold');
+        pushNotification('IOT', 'Temperature is lower than threshold');
       } else if (payload > TEMPERATURE_THRESHOLD.MAX) {
-        pushNotification('IoT', 'Temperature is higher than threshold');
+        pushNotification('IOT', 'Temperature is higher than threshold');
       }
       break;
     default:

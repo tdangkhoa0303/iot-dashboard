@@ -29,15 +29,15 @@ export default defineConfig(({ mode }) => ({
       devOptions: {
         enabled: mode === 'development',
         type: 'module',
-        navigateFallback: 'index.html',
+        navigateFallback: '/',
       },
       strategies: 'injectManifest',
       srcDir: 'src',
       filename: 'sw.ts',
       outDir: 'dist',
       manifest: {
-        name: 'IoT',
-        short_name: 'IoT',
+        name: 'IoT Farm',
+        short_name: 'IoT Farm',
         icons: [
           {
             src: 'android-chrome-192x192.png',
