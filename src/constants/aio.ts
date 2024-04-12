@@ -6,6 +6,6 @@ export const AIO_FEED_IDS = {
   MOISTURE_SENSOR: 'duc23mse23106/feeds/moisture',
 } as const;
 
-export const AIO_USERNAME = 'duc23mse23106';
-export const AIO_KEY = 'aio_XOdg639KpUeEF5KDkUHklYRs74Tq';
+export const AIO_USERNAME = '';
+export const AIO_KEY = '';
 export const BROKER_URI = `mqtts://${AIO_USERNAME}:${AIO_KEY}@io.adafruit.com`;
